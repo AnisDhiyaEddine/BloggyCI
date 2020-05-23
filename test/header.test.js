@@ -15,14 +15,14 @@ test("header loaded", async () => {
   const text = await page.$eval("a.brand-logo", (el) => el.innerHTML);
   expect(text).toEqual("Blogster");
 });
-/*
+
 //Needs an internet connection
 test("OAuth flow redirected", async () => {
   await page.click(".right a");
   const url = page.url();
   expect(url).toMatch(/github\.com\/login/);
 });
-*/
+
 test("signed in", async () => {
 jest.setTimeout(100000)
   await page.login() 
