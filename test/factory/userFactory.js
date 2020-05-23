@@ -3,7 +3,7 @@ const User = require("../../models/User");
 const githubUserID = new mongoose.Types.ObjectId();
 const githubUser = {
   _id: githubUserID,
-  userName: "githubuser",
+  displayName: "githubuser",
   githubId: "github Id",
 };
 
