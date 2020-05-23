@@ -25,7 +25,11 @@ class CustomPage {
     const { session, sig } = sessionFactory(githubUser);
     await this.page.setCookie({ name: "session", value: session });
     await this.page.setCookie({ name: "session.sig", value: sig });
-    await this.page.goto("http://localhost:3000/");
+    await this.page.goto("http://localhost:3000/blogs");
+  }
+
+  async getContentOf(selector) {
+    return this.page.$eval(selector, (el) => el.innerHTML);
   }
 }
 

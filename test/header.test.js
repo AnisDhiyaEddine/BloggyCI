@@ -1,4 +1,4 @@
-const { setupDatabaseOAuth } = require('./factory/userFactory');
+const { setupDatabaseOAuth } = require("./factory/userFactory");
 const Page = require("./helpers/page");
 let page;
 beforeEach(async () => {
@@ -8,11 +8,11 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
- await page.close();
+  await page.close();
 });
 
 test("header loaded", async () => {
-  const text = await page.$eval("a.brand-logo", (el) => el.innerHTML);
+  const text = await page.getContentOf("a.brand-logo");
   expect(text).toEqual("Blogster");
 });
 
@@ -24,8 +24,7 @@ test("OAuth flow redirected", async () => {
 });
 
 test("signed in", async () => {
-jest.setTimeout(100000)
-  await page.login() 
+  await page.login();
   await page.waitFor('a[href="/auth/logout"]');
   const text = await page.$eval('a[href="/auth/logout"]', (el) => el.innerHTML);
   expect(text).toEqual("Logout");
