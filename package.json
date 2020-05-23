@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test":"jest",
+    "test": "jest --watch",
     "start": "node index.js",
     "server": "nodemon index.js --ignore tests",
     "client": "npm run start --prefix client",
@@ -14,7 +14,8 @@
   },
   "jest": {
     "verbose": true,
-    "testURL": "http://localhost/"
+    "testURL": "http://localhost/",
+    "setupTestFrameworkScriptFile": "./test/setup.js"
   },
   "author": "ANISDHIYAEDDINE BOUDIAF",
   "license": "ISC",
