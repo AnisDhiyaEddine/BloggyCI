@@ -46,7 +46,7 @@ describe("when logged in", async () => {
       const text = await page.getContentOf("h5");
       expect(text).toEqual("Please confirm your entries");
     });
-    
+
     test("blog appears in main page", async () => {
       await page.click(".green");
       await page.waitFor(".btn-floating");
@@ -55,8 +55,35 @@ describe("when logged in", async () => {
 
       expect(title).toEqual("Test title");
       expect(content).toEqual("Test content");
-      
     });
-    
+  });
+});
+
+describe("when not logged in", async () => {
+  test("can't add blog", async () => {
+    const result = await page.evaluate(() => {
+      return fetch("api/blogs", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title: "My Title", content: "My Content" }),
+      }).then((res) => res.json());
+    });
+    expect(result.error).toEqual("You must log in!");
+  });
+
+  test('can"t see posts', async () => {
+    const result = await page.evaluate(() => {
+      return fetch("api/blogs", {
+        method: "GET",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((res) => res.json());
+    });
+    expect(result.error).toEqual("You must log in!");
   });
 });
