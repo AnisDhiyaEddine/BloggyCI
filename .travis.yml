@@ -12,10 +12,7 @@ cache:
   directories:
     - node_modules
     - client/node_modules
-install: travis_wait 30 mvn install
+install: 
   - yarn install
   - yarn build
-script:
-  - nohup yarn start &
-  - sleep 3
-  - yarn test
+  
