@@ -15,4 +15,7 @@ cache:
 install: 
   - yarn install
   - yarn build
-  
+script:
+  - nohup yarn start &
+  - sleep 3
+  - yarn test
