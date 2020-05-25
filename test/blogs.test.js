@@ -79,7 +79,6 @@ describe("when not logged in", async () => {
 
   test("relative actions are prohibited", async () => {
     const results = await page.execRequests(actions);
-    console.log(results);
     for (let result of results) {
       expect(result).toEqual({ error: "You must log in!" });
     }
